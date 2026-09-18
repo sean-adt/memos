@@ -1,0 +1,78 @@
+name: ADT publish test image
+on:
+  push:
+    branches: [release]
+permissions:
+  contents: read
+concurrency:
+  group: publish-test-image
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: adt-org-runner
+    timeout-minutes: 90
+    env:
+      IMAGE: registry.10.68.12.170.nip.io/sean-adt/memos/app
+    steps:
+      - {"uses": "actions/checkout@v6"}
+      - {"uses": "actions/setup-python@v6", "with": {"python-version": "3.13"}}
+      - {"uses": "actions/setup-go@v6", "with": {"go-version-file": "go.mod"}}
+      - {"uses": "pnpm/action-setup@v4", "with": {"version": "11.0.1", "package_json_file": "web/package.json"}}
+      - {"uses": "actions/setup-node@v6", "with": {"node-version": "24"}}
+      - {"name": "Run project checks", "run": "python3 .adt/test.py"}
+      - {"name": "Build source image", "run": "python3 .adt/runtime.py build --image \"$IMAGE:$GITHUB_SHA\""}
+      - {"name": "Verify container and dependencies", "run": "python3 .adt/runtime.py smoke --image \"$IMAGE:$GITHUB_SHA\""}
+      - {"name": "Clean disposable resources", "if": "always()", "run": "python3 .adt/runtime.py cleanup"}
+      - name: Push verified image
+        run: docker push "$IMAGE:$GITHUB_SHA"
+      - name: Checkout GitOps repository
+        uses: actions/checkout@v5
+        with:
+          repository: sean-lpx/autonomous-gitops
+          ref: main
+          token: ${{ secrets.GITOPS_TOKEN }}
+          path: gitops
+      - name: Update test deployment image
+        shell: bash
+        working-directory: gitops
+        run: |
+          set -euo pipefail
+          latest_release="$(git -C .. ls-remote origin refs/heads/release | awk '{print $1}')"
+          test -n "$latest_release"
+          if [ "$latest_release" != "$GITHUB_SHA" ]; then
+            echo "Skipping superseded release: $GITHUB_SHA"
+            exit 0
+          fi
+          published_ref="$(docker image inspect "$IMAGE:$GITHUB_SHA" --format '{{index .RepoDigests 0}}')"
+          export IMAGE_DIGEST="${published_ref##*@}"
+          [[ "$IMAGE_DIGEST" =~ ^sha256:[0-9a-f]{64}$ ]]
+          python3 - <<'PY'
+          import os, re
+          from pathlib import Path
+          path = Path("apps/sean-adt-memos-39070bfc/overlays/test/kustomization.yaml")
+          original = path.read_text()
+          updated, count = re.subn(r"(?m)^([ \t]*digest:[ \t]*)sha256:[0-9a-f]{64}[ \t]*$",
+                                  lambda m: m.group(1) + os.environ['IMAGE_DIGEST'], original)
+          if count != 1:
+              raise SystemExit('Expected exactly one image digest')
+          path.write_text(updated)
+          PY
+          file="apps/sean-adt-memos-39070bfc/overlays/test/kustomization.yaml"
+          if git diff --quiet -- "$file"; then
+            echo "GitOps already references this image."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- "$file"
+          git commit -m "deploy(memos): ${GITHUB_SHA}" -m "Source: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          # Other projects may update this shared branch at the same time.
+          # Rebase preserves their unrelated paths; a conflict stops publication.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+          done
+          exit 1

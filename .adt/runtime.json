@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "build": {
+    "dockerfile": "scripts/Dockerfile",
+    "context": ".",
+    "commands": [
+      {
+        "cwd": "web",
+        "argv": [
+          "pnpm",
+          "release"
+        ]
+      }
+    ]
+  },
+  "app": {
+    "port": 5230,
+    "run_as": 10001,
+    "env": {
+      "MEMOS_MODE": "prod",
+      "MEMOS_PORT": "5230",
+      "MEMOS_DRIVER": "sqlite"
+    },
+    "health": {
+      "path": "/healthz",
+      "status": 200,
+      "body": "Service ready.",
+      "frontend_path": "/"
+    },
+    "volumes": [
+      {
+        "name": "data",
+        "mount": "/var/opt/memos",
+        "size": "1Gi"
+      }
+    ],
+    "startup_seconds": 600,
+    "secret_env": {},
+    "ci_env": {}
+  },
+  "services": []
+}

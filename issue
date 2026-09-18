@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+"""Submit a one-line request to GitHub for the platform listener."""
+
+import argparse
+import os
+import subprocess
+import sys
+
+
+def main():
+    parser = argparse.ArgumentParser(description="输入一句需求，回车提交到业务仓库。")
+    parser.add_argument("--repo", "-R", help="目标 OWNER/REPO；默认使用当前 Git 仓库")
+    args = parser.parse_args()
+    env = os.environ.copy()
+    env.setdefault("GODEBUG", "tlsmlkem=0")
+    env["GH_PAGER"] = "cat"
+
+    try:
+        lookup = ["gh", "repo", "view"]
+        if args.repo:
+            lookup.append(args.repo)
+        lookup += ["--json", "nameWithOwner", "--jq", ".nameWithOwner"]
+        result = subprocess.run(lookup, env=env, text=True, stdout=subprocess.PIPE)
+        if result.returncode:
+            print("无法确定仓库。请进入业务仓库，或使用 issue --repo OWNER/REPO。", file=sys.stderr)
+            return result.returncode
+        repo = result.stdout.strip()
+        if not repo or len(repo.split("/")) != 2:
+            print("GitHub 未返回有效仓库名称，未提交。", file=sys.stderr)
+            return 1
+        print(f"提交到 {repo}（回车提交；Ctrl+C 取消）", flush=True)
+        description = input("请输入需求：").strip()
+        if not description:
+            print("内容为空，未提交。")
+            return 0
+        # Arguments are passed directly, never interpreted as shell code.
+        result = subprocess.run([
+            "gh", "issue", "create", "--repo", repo,
+            "--title", description[:60], "--body", description,
+        ], env=env)
+        if result.returncode:
+            print("提交未确认成功，请先检查 GitHub Issues，避免重复提交。", file=sys.stderr)
+        else:
+            print("已提交；该仓库的监听器运行时会自动接手。")
+        return result.returncode
+    except (EOFError, KeyboardInterrupt):
+        print("\n已中断；若已开始提交，请到 GitHub Issues 确认结果。", file=sys.stderr)
+        return 130
+    except FileNotFoundError:
+        print("需要安装 GitHub CLI（gh），并先执行 gh auth login。", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
