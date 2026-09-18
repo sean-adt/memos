@@ -1,28 +1,18 @@
-name: ADT publish test image
-on:
-  push:
-    branches: [release]
-permissions:
-  contents: read
-concurrency:
-  group: publish-test-image
-  cancel-in-progress: false
+"name": "ADT publish test image"
+"on": {"push": {"branches": ["release"]}}
+"permissions": {"contents": "read"}
+"concurrency": {"group": "publish-test-image", "cancel-in-progress": false}
 jobs:
+  validate: {"name": "ADT validation", "runs-on": "ubuntu-24.04", "timeout-minutes": 90, "steps": [{"uses": "actions/checkout@v6", "with": {"persist-credentials": false}}, {"uses": "actions/setup-python@v6", "with": {"python-version": "3.13"}}, {"uses": "actions/setup-go@v6", "with": {"go-version": "1.27.0"}}, {"uses": "pnpm/action-setup@v4", "with": {"version": "11.0.1", "package_json_file": "web/package.json"}}, {"uses": "actions/setup-node@v6", "with": {"node-version": "24.21.0"}}, {"name": "Run project checks", "run": "python3 .adt/test.py"}, {"name": "Build source image", "run": "python3 .adt/runtime.py build --image adt-validation:ci"}, {"name": "Verify container and dependencies", "run": "python3 .adt/runtime.py smoke --image adt-validation:ci"}, {"name": "Clean disposable resources", "if": "always()", "run": "python3 .adt/runtime.py cleanup"}, {"name": "Export verified image", "id": "export", "run": "python3 - <<'PY'\nimport hashlib, json, os, subprocess\nfrom pathlib import Path\nout = Path(os.environ['RUNNER_TEMP']) / 'adt-artifact'\nout.mkdir()\narchive = out / 'image.tar'\nsubprocess.run(['docker', 'save', '-o', str(archive), 'adt-validation:ci'], check=True)\nwith archive.open('rb') as stream:\n    checksum = hashlib.file_digest(stream, 'sha256').hexdigest()\nimage_id = subprocess.check_output(['docker', 'image', 'inspect', 'adt-validation:ci', '--format', '{{.Id}}'], text=True).strip()\n(out / 'manifest.json').write_text(json.dumps({'version': 1, 'source': os.environ['GITHUB_SHA'],\n    'repository': os.environ['GITHUB_REPOSITORY'], 'repo_id': os.environ['GITHUB_REPOSITORY_ID'],\n    'workflow': os.environ['GITHUB_WORKFLOW_REF'], 'job': os.environ['GITHUB_JOB'],\n    'attempt': os.environ['GITHUB_RUN_ATTEMPT'], 'run': os.environ['GITHUB_RUN_ID'],\n    'image_id': image_id, 'sha256': checksum}))\nwith open(os.environ['GITHUB_OUTPUT'], 'a') as stream:\n    stream.write('attempt=' + os.environ['GITHUB_RUN_ATTEMPT'] + '\\n')\nPY"}, {"uses": "actions/upload-artifact@v4", "id": "artifact", "with": {"name": "adt-image-${{ github.sha }}-${{ github.run_attempt }}", "path": "${{ runner.temp }}/adt-artifact/", "retention-days": 7, "if-no-files-found": "error", "compression-level": 0}}], "outputs": {"artifact": "${{ steps.artifact.outputs.artifact-id }}", "attempt": "${{ steps.export.outputs.attempt }}"}}
   publish:
-    runs-on: adt-org-runner
-    timeout-minutes: 90
-    env:
-      IMAGE: registry.10.68.12.170.nip.io/sean-adt/memos/app
+    needs: "validate"
+    runs-on: "adt-org-runner"
+    timeout-minutes: 30
+    env: {"IMAGE": "registry.10.68.12.170.nip.io/sean-adt/memos/app", "GH_TOKEN": "${{ github.token }}", "VALIDATION_ATTEMPT": "${{ needs.validate.outputs.attempt }}"}
     steps:
-      - {"uses": "actions/checkout@v6"}
       - {"uses": "actions/setup-python@v6", "with": {"python-version": "3.13"}}
-      - {"uses": "actions/setup-go@v6", "with": {"go-version-file": "go.mod"}}
-      - {"uses": "pnpm/action-setup@v4", "with": {"version": "11.0.1", "package_json_file": "web/package.json"}}
-      - {"uses": "actions/setup-node@v6", "with": {"node-version": "24"}}
-      - {"name": "Run project checks", "run": "python3 .adt/test.py"}
-      - {"name": "Build source image", "run": "python3 .adt/runtime.py build --image \"$IMAGE:$GITHUB_SHA\""}
-      - {"name": "Verify container and dependencies", "run": "python3 .adt/runtime.py smoke --image \"$IMAGE:$GITHUB_SHA\""}
-      - {"name": "Clean disposable resources", "if": "always()", "run": "python3 .adt/runtime.py cleanup"}
+      - {"uses": "actions/download-artifact@v4", "with": {"artifact-ids": "${{ needs.validate.outputs.artifact }}", "merge-multiple": true, "path": "${{ runner.temp }}/adt-artifact"}}
+      - {"name": "Verify and load validated image", "run": "python3 - <<'PY'\nimport hashlib, json, os, re, subprocess\nfrom pathlib import Path\nout = Path(os.environ['RUNNER_TEMP']) / 'adt-artifact'\nmanifest = json.loads((out / 'manifest.json').read_text())\nif not (manifest.get('version') == 1 and manifest.get('source') == os.environ['GITHUB_SHA']\n        and manifest.get('repository') == os.environ['GITHUB_REPOSITORY']\n        and manifest.get('run') == os.environ['GITHUB_RUN_ID']\n        and manifest.get('repo_id') == os.environ['GITHUB_REPOSITORY_ID']\n        and manifest.get('workflow') == os.environ['GITHUB_WORKFLOW_REF']\n        and manifest.get('job') == 'validate'\n        and manifest.get('attempt') == os.environ['VALIDATION_ATTEMPT']\n        and re.fullmatch(r'sha256:[0-9a-f]{64}', manifest.get('image_id', ''))):\n    raise SystemExit('ADT: artifact provenance mismatch')\narchive = out / 'image.tar'\nwith archive.open('rb') as stream:\n    checksum = hashlib.file_digest(stream, 'sha256').hexdigest()\nif checksum != manifest.get('sha256'):\n    raise SystemExit('ADT: artifact checksum mismatch')\nsubprocess.run(['docker', 'load', '-i', str(archive)], check=True)\nimage_id = subprocess.check_output(['docker', 'image', 'inspect', 'adt-validation:ci', '--format', '{{.Id}}'], text=True).strip()\nif image_id != manifest['image_id']:\n    raise SystemExit('ADT: loaded image differs from validated image')\nsubprocess.run(['docker', 'tag', image_id, os.environ['IMAGE'] + ':' + os.environ['GITHUB_SHA']], check=True)\nPY"}
       - name: Push verified image
         run: docker push "$IMAGE:$GITHUB_SHA"
       - name: Checkout GitOps repository
@@ -37,7 +27,13 @@ jobs:
         working-directory: gitops
         run: |
           set -euo pipefail
-          latest_release="$(git -C .. ls-remote origin refs/heads/release | awk '{print $1}')"
+          latest_release="$(python3 - <<'PY'
+          import json, os, urllib.request
+          request = urllib.request.Request('https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY'] + '/git/ref/heads/release', headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN']})
+          with urllib.request.urlopen(request, timeout=30) as response:
+              print(json.load(response)['object']['sha'])
+          PY
+          )"
           test -n "$latest_release"
           if [ "$latest_release" != "$GITHUB_SHA" ]; then
             echo "Skipping superseded release: $GITHUB_SHA"
@@ -76,3 +72,6 @@ jobs:
             fi
           done
           exit 1
+      - name: Clean downloaded artifact
+        if: always()
+        run: rm -rf -- "$RUNNER_TEMP/adt-artifact"
