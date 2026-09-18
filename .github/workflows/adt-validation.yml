@@ -1,0 +1,76 @@
+{
+  "name": "ADT validation",
+  "on": {
+    "pull_request": {
+      "branches": [
+        "release"
+      ]
+    },
+    "push": {
+      "branches": [
+        "release"
+      ]
+    }
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "${{ github.workflow }}-${{ github.ref }}",
+    "cancel-in-progress": true
+  },
+  "jobs": {
+    "validate": {
+      "name": "ADT validation",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 90,
+      "steps": [
+        {
+          "uses": "actions/checkout@v6"
+        },
+        {
+          "uses": "actions/setup-python@v6",
+          "with": {
+            "python-version": "3.13"
+          }
+        },
+        {
+          "uses": "actions/setup-go@v6",
+          "with": {
+            "go-version-file": "go.mod"
+          }
+        },
+        {
+          "uses": "pnpm/action-setup@v4",
+          "with": {
+            "version": "11.0.1",
+            "package_json_file": "web/package.json"
+          }
+        },
+        {
+          "uses": "actions/setup-node@v6",
+          "with": {
+            "node-version": "24"
+          }
+        },
+        {
+          "name": "Run project checks",
+          "run": "python3 .adt/test.py"
+        },
+        {
+          "name": "Build source image",
+          "run": "python3 .adt/runtime.py build --image adt-validation:ci"
+        },
+        {
+          "name": "Verify container and dependencies",
+          "run": "python3 .adt/runtime.py smoke --image adt-validation:ci"
+        },
+        {
+          "name": "Clean disposable resources",
+          "if": "always()",
+          "run": "python3 .adt/runtime.py cleanup"
+        }
+      ]
+    }
+  }
+}
