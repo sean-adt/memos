@@ -1323,7 +1323,7 @@ func TestMigrationFromStableVersion(t *testing.T) {
 	skipIfContainerProviderUnavailable(t)
 
 	ctx := context.Background()
-	dataDir := t.TempDir()
+	dataDir := newContainerDataDir(t)
 
 	// 1. Start stable Memos container to create database with old schema
 	cfg := MemosContainerConfig{

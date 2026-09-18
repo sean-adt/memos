@@ -129,7 +129,7 @@ func prepareUpgradeFixture(t *testing.T, driver, version string) (MemosContainer
 
 	switch driver {
 	case "sqlite":
-		dataDir := t.TempDir()
+		dataDir := newContainerDataDir(t)
 		return MemosContainerConfig{
 			Version: version,
 			Driver:  driver,

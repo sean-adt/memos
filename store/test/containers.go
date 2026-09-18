@@ -275,6 +275,27 @@ func TerminateContainers() {
 	}
 }
 
+// newContainerDataDir creates a fixture directory visible to the Docker daemon.
+// On ARC Runners whose work volume is shared with Docker-in-Docker, RUNNER_TEMP
+// is visible to both containers, whereas their default /tmp directories are not.
+func newContainerDataDir(t *testing.T) string {
+	t.Helper()
+	root := os.Getenv("RUNNER_TEMP")
+	if root == "" {
+		return t.TempDir()
+	}
+	directory, err := os.MkdirTemp(root, "memos-migration-")
+	if err != nil {
+		t.Fatalf("create container data in RUNNER_TEMP: %v", err)
+	}
+	t.Cleanup(func() {
+		if err := os.RemoveAll(directory); err != nil {
+			t.Errorf("remove container data directory: %v", err)
+		}
+	})
+	return directory
+}
+
 // MemosContainerConfig holds configuration for starting a Memos container.
 type MemosContainerConfig struct {
 	Version string // Memos version tag (e.g., "0.24.0")
