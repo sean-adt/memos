@@ -18,8 +18,8 @@
   },
   "demo": {
     "banner-description": "Pakeitimai yra laikini ir gali būti nustatyti iš naujo.",
-    "banner-title": "Memos demonstracinė versija",
-    "deploy-link": "Įdiekite savo Memos"
+    "banner-title": "zenlayer demonstracinė versija",
+    "deploy-link": "Įdiekite savo zenlayer"
   },
   "attachment-library": {
     "actions": {
@@ -274,7 +274,7 @@
       "image-download": "Atsisiųskite PNG",
       "image-download-failed": "Nepavyko eksportuoti vaizdo",
       "image-downloaded": "Vaizdas išsaugotas",
-      "image-footer": "Bendrinama iš Memos",
+      "image-footer": "Bendrinama iš zenlayer",
       "image-share": "Bendrinti vaizdą",
       "image-share-failed": "Nepavyko bendrinti vaizdo",
       "image-title": "Bendrinti kaip vaizdą",
@@ -420,10 +420,10 @@
       "add-provider": "Pridėti teikėją",
       "api-key": "API raktas",
       "api-key-required": "Reikalingas API raktas.",
-      "byok-description": "Prijunkite OpenAI arba Gemini naudodami API raktą iš savo paskyros. Memos skambina teikėjui tiesiai iš šio serverio.",
-      "byok-key-note": "Naudokite raktą iš savo teikėjo paskyros; Memos nesujungia bendrinamų AI kredencialų.",
+      "byok-description": "Prijunkite OpenAI arba Gemini naudodami API raktą iš savo paskyros. zenlayer skambina teikėjui tiesiai iš šio serverio.",
+      "byok-key-note": "Naudokite raktą iš savo teikėjo paskyros; zenlayer nesujungia bendrinamų AI kredencialų.",
       "byok-label": "BYOK",
-      "byok-model-note": "Memos pasirenka palaikomus modelius tokioms funkcijoms kaip garso transkripcija.",
+      "byok-model-note": "zenlayer pasirenka palaikomus modelius tokioms funkcijoms kaip garso transkripcija.",
       "byok-storage-note": "Klavišai lieka šiame egzemplioriuje ir yra užmaskuoti, kai įkeliami nustatymai.",
       "byok-title": "Naudokite savo AI paskyrą",
       "configured": "Sukonfigūruota",
@@ -431,7 +431,7 @@
       "default-endpoint": "Numatytasis galutinis taškas",
       "delete-provider": "Ištrinti AI teikėją `{{title}}`?",
       "description": "Teikėjo raktus pateikia egzemplioriaus savininkas ir naudoja serverio AI funkcijos.",
-      "dialog-description": "Pridėkite raktą iš savo teikėjo paskyros. Memos naudoja integruotus modelius kiekvienam teikėjui; Redaguodami palikite raktą API tuščią, kad išsaugotumėte raktą.",
+      "dialog-description": "Pridėkite raktą iš savo teikėjo paskyros. zenlayer naudoja integruotus modelius kiekvienam teikėjui; Redaguodami palikite raktą API tuščią, kad išsaugotumėte raktą.",
       "edit-provider": "Redaguoti teikėją",
       "endpoint": "Galutinis taškas",
       "endpoint-hint": "Palikite tuščią, kad galėtumėte naudoti oficialų teikėjo galutinį tašką.",

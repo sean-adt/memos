@@ -244,7 +244,7 @@
       "image-download": "PNG downloaden",
       "image-download-failed": "Kan afbeelding niet exporteren",
       "image-downloaded": "Afbeelding opgeslagen",
-      "image-footer": "Gedeeld vanuit Memos",
+      "image-footer": "Gedeeld vanuit zenlayer",
       "image-share": "Deel afbeelding",
       "image-share-failed": "Kan afbeelding niet delen",
       "image-title": "Deel als afbeelding",
@@ -595,7 +595,7 @@
       },
       "disable-password-login": "Wachtwoordlogin uitzetten",
       "disable-password-login-final-warning": "Typ \"CONFIRM\" als je zeker weet wat je doet.",
-      "disable-password-login-warning": "Als je dit uitzet, kan je niet meer inloggen met een wachtwoord, zonder de database aan te passen. Als je inlogprovider niet werkt, kan je memos niet in.",
+      "disable-password-login-warning": "Als je dit uitzet, kan je niet meer inloggen met een wachtwoord, zonder de database aan te passen. Als je inlogprovider niet werkt, kan je zenlayer niet in.",
       "display-with-updated-time": "Weergeven met bewerkte tijd",
       "enable-auto-compact": "Automatisch compact inschakelen",
       "enable-double-click-to-edit": "Dubbelklik om te bewerken inschakelen",
@@ -657,10 +657,10 @@
       "add-provider": "Aanbieder toevoegen",
       "api-key": "API-sleutel",
       "api-key-required": "API-sleutel is vereist.",
-      "byok-description": "Verbind OpenAI of Gemini met een API-sleutel uit uw eigen account. Memos belt de provider rechtstreeks vanaf deze server.",
-      "byok-key-note": "Gebruik een sleutel van uw provideraccount; Memos bundelt geen gedeelde AI-inloggegevens.",
+      "byok-description": "Verbind OpenAI of Gemini met een API-sleutel uit uw eigen account. zenlayer belt de provider rechtstreeks vanaf deze server.",
+      "byok-key-note": "Gebruik een sleutel van uw provideraccount; zenlayer bundelt geen gedeelde AI-inloggegevens.",
       "byok-label": "BYOK",
-      "byok-model-note": "Memos selecteert ondersteunde modellen voor functies zoals audiotranscriptie.",
+      "byok-model-note": "zenlayer selecteert ondersteunde modellen voor functies zoals audiotranscriptie.",
       "byok-storage-note": "Sleutels blijven op deze instantie en worden gemaskeerd wanneer instellingen worden geladen.",
       "byok-title": "Gebruik uw eigen AI-account",
       "configured": "Geconfigureerd",
@@ -668,7 +668,7 @@
       "default-endpoint": "Standaardeindpunt",
       "delete-provider": "AI-provider `{{title}}` verwijderen?",
       "description": "Providersleutels worden geleverd door de instantie-eigenaar en gebruikt door AI-functies op de server.",
-      "dialog-description": "Voeg een sleutel toe vanuit uw eigen provideraccount. Memos gebruikt voor elke provider ingebouwde modellen; laat de API-sleutel leeg tijdens het bewerken om de opgeslagen sleutel te behouden.",
+      "dialog-description": "Voeg een sleutel toe vanuit uw eigen provideraccount. zenlayer gebruikt voor elke provider ingebouwde modellen; laat de API-sleutel leeg tijdens het bewerken om de opgeslagen sleutel te behouden.",
       "edit-provider": "Aanbieder bewerken",
       "endpoint": "Eindpunt",
       "endpoint-hint": "Laat dit leeg om het officiële eindpunt van de provider te gebruiken.",
@@ -778,8 +778,8 @@
   },
   "demo": {
     "banner-description": "Wijzigingen zijn tijdelijk en kunnen worden gereset.",
-    "banner-title": "Memos-demo",
-    "deploy-link": "Implementeer uw Memos"
+    "banner-title": "zenlayer-demo",
+    "deploy-link": "Implementeer uw zenlayer"
   },
   "attachment-library": {
     "actions": {

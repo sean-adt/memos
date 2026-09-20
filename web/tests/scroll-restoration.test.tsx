@@ -69,6 +69,7 @@ describe("scroll restoration", () => {
 
     render(<RouterProvider router={router} />);
     await screen.findByText("First page");
+    expect(document.title).toBe("zenlayer");
     scrollTo.mockClear();
 
     scrollY = 640;
@@ -76,11 +77,13 @@ describe("scroll restoration", () => {
       await router.navigate("/second");
     });
     await waitFor(() => expect(scrollTo).toHaveBeenLastCalledWith(0, 0));
+    expect(document.title).toBe("zenlayer");
 
     scrollY = 180;
     await act(async () => {
       await router.navigate(-1);
     });
     await waitFor(() => expect(scrollTo).toHaveBeenLastCalledWith(0, 640));
+    expect(document.title).toBe("zenlayer");
   });
 });

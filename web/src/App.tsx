@@ -49,11 +49,11 @@ const App = () => {
 
   // Dynamic update metadata with customized profile
   useEffect(() => {
+    document.title = instanceGeneralSetting.customProfile?.title || "zenlayer";
     if (!instanceGeneralSetting.customProfile) {
       return;
     }
 
-    document.title = instanceGeneralSetting.customProfile.title;
     const link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
     link.href = instanceGeneralSetting.customProfile.logoUrl || "/logo.webp";
   }, [instanceGeneralSetting.customProfile]);

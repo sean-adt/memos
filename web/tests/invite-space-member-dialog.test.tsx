@@ -62,9 +62,9 @@ vi.mock("@/components/ui/select", () => ({
 vi.mock("@/utils/i18n", () => ({
   useTranslate: () => (key: string) => {
     const copy: Record<string, string> = {
-      "setting.spaces.active-user": "Active Memos user",
-      "setting.spaces.invite-description": "Invite an existing Memos user. They must accept before joining the space.",
-      "setting.spaces.memos-user": "Memos user",
+      "setting.spaces.active-user": "Active zenlayer user",
+      "setting.spaces.invite-description": "Invite an existing zenlayer user. They must accept before joining the space.",
+      "setting.spaces.memos-user": "zenlayer user",
       "setting.spaces.search-user-placeholder": "Search by exact username",
       "setting.spaces.send-invitation": "Send invitation",
     };
@@ -107,7 +107,7 @@ describe("InviteSpaceMemberDialog", () => {
     vi.useRealTimers();
   });
 
-  it("invites an exact active Memos user with the chosen role and explains consent", async () => {
+  it("invites an exact active zenlayer user with the chosen role and explains consent", async () => {
     render(
       <InviteSpaceMemberDialog
         open
@@ -119,14 +119,14 @@ describe("InviteSpaceMemberDialog", () => {
       />,
     );
 
-    expect(screen.getByText("Invite an existing Memos user. They must accept before joining the space.")).toBeInTheDocument();
+    expect(screen.getByText("Invite an existing zenlayer user. They must accept before joining the space.")).toBeInTheDocument();
     expect(screen.getByText("product")).toBeInTheDocument();
 
-    fireEvent.change(screen.getByLabelText("Memos user"), { target: { value: "  @alice  " } });
+    fireEvent.change(screen.getByLabelText("zenlayer user"), { target: { value: "  @alice  " } });
     act(() => vi.advanceTimersByTime(300));
 
     expect(state.requestedUsernames.at(-1)).toEqual(["alice"]);
-    expect(screen.getByText(/@alice · Active Memos user/)).toBeInTheDocument();
+    expect(screen.getByText(/@alice · Active zenlayer user/)).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: /Alice/ }));
     fireEvent.change(screen.getByLabelText("role-select"), { target: { value: String(SpaceMember_Role.ADMIN) } });

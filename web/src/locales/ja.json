@@ -9,13 +9,13 @@
     "description": "プライバシー重視の軽量ノートサービス。あなたの素晴らしいアイデアを簡単に記録・共有できます。",
     "distribution": "ディストリビューション",
     "documents": "ドキュメント",
-    "documents-note": "Memosのデプロイ・設定・使い方",
+    "documents-note": "zenlayerのデプロイ・設定・使い方",
     "github-repository": "GitHubリポジトリ",
     "github-repository-note": "ソースコード・Issue・リリース",
     "license": "ライセンス",
     "official-website": "公式サイト",
     "official-website-note": "プロジェクトのホームページ",
-    "powered-by": "Powered by Memos",
+    "powered-by": "Powered by zenlayer",
     "project": "プロジェクト",
     "project-links": "プロジェクトリンク",
     "web-clipper": "Web Clipper",
@@ -49,7 +49,7 @@
     "welcome-back": "おかえりなさい。"
   },
   "common": {
-    "about": "Memos について",
+    "about": "zenlayer について",
     "actions": "操作",
     "add": "追加",
     "admin": "管理者設定",
@@ -136,7 +136,7 @@
     "settings": "設定",
     "share": "共有する",
     "sign-in": "サインイン",
-    "sign-in-to-memos": "Memosにサインイン",
+    "sign-in-to-memos": "zenlayerにサインイン",
     "sign-out": "サインアウト",
     "sign-up": "登録",
     "statistics": "統計",
@@ -313,7 +313,7 @@
       "image-download": "ダウンロード",
       "image-download-failed": "画像のエクスポートに失敗しました",
       "image-downloaded": "画像を保存しました",
-      "image-footer": "Memosから共有",
+      "image-footer": "zenlayerから共有",
       "image-share": "画像を共有する",
       "image-share-failed": "画像の共有に失敗しました",
       "image-title": "画像として共有",
@@ -432,7 +432,7 @@
       },
       "create-first": "最初のトークンを作成",
       "description": "あなたのアカウントにあるアクセストークンの一覧です。",
-      "about-description": "パーソナルアクセストークン（PAT）は、APIリクエストをあなたのアカウントとして認証するためのシークレットキーです。MCPサーバー、CLI、モバイルクライアントなど、トークンを持つアプリやスクリプトは、トークンの有効期限が切れるか削除されるまで、Memosであなたができるすべての操作を行えます。Authorizationヘッダーに Bearer 認証情報として送信します:",
+      "about-description": "パーソナルアクセストークン（PAT）は、APIリクエストをあなたのアカウントとして認証するためのシークレットキーです。MCPサーバー、CLI、モバイルクライアントなど、トークンを持つアプリやスクリプトは、トークンの有効期限が切れるか削除されるまで、zenlayerであなたができるすべての操作を行えます。Authorizationヘッダーに Bearer 認証情報として送信します:",
       "empty-description": "トークンを使うと、スクリプトやアプリがあなたとしてAPIを呼び出せます。トークンは作成直後に一度だけ表示され、その後はここに一覧表示されて取り消しできます。",
       "empty-title": "アクセストークンはまだありません",
       "expires": "有効期限",
@@ -447,7 +447,7 @@
       "no-expiration": "無期限",
       "title": "アクセストークン",
       "token": "トークン",
-      "web-clipper-title": "Memos Web Clipperでトークンを使う"
+      "web-clipper-title": "zenlayer Web Clipperでトークンを使う"
     },
     "account": {
       "change-password": "パスワードを変更",
@@ -754,10 +754,10 @@
       "add-provider": "プロバイダーの追加",
       "api-key": "APIキー",
       "api-key-required": "APIキーが必要です。",
-      "byok-description": "自分のアカウントの API キーを使用して OpenAI または Gemini を接続します。 Memos は、このサーバーからプロバイダーを直接呼び出します。",
-      "byok-key-note": "プロバイダー アカウントのキーを使用します。 Memos には、共有 AI 資格情報がバンドルされていません。",
+      "byok-description": "自分のアカウントの API キーを使用して OpenAI または Gemini を接続します。 zenlayer は、このサーバーからプロバイダーを直接呼び出します。",
+      "byok-key-note": "プロバイダー アカウントのキーを使用します。 zenlayer には、共有 AI 資格情報がバンドルされていません。",
       "byok-label": "BYOK",
-      "byok-model-note": "Memos は、音声転写などの機能をサポートするモデルを選択します。",
+      "byok-model-note": "zenlayer は、音声転写などの機能をサポートするモデルを選択します。",
       "byok-storage-note": "キーはこのインスタンスに残り、設定が読み込まれるときにマスクされます。",
       "byok-title": "自分の AI アカウントを使用する",
       "configured": "設定済み",
@@ -765,7 +765,7 @@
       "default-endpoint": "デフォルトのエンドポイント",
       "delete-provider": "AI プロバイダー `{{title}}` を削除しますか?",
       "description": "プロバイダー キーはインスタンス所有者によって提供され、サーバー側の AI 機能によって使用されます。",
-      "dialog-description": "自分のプロバイダー アカウントからキーを追加します。 Memos は各プロバイダーの組み込みモデルを使用します。 保存されたキーを保持するには、編集中は API キーを空白のままにしてください。",
+      "dialog-description": "自分のプロバイダー アカウントからキーを追加します。 zenlayer は各プロバイダーの組み込みモデルを使用します。 保存されたキーを保持するには、編集中は API キーを空白のままにしてください。",
       "edit-provider": "プロバイダーの編集",
       "endpoint": "終点",
       "endpoint-hint": "公式プロバイダー エンドポイントを使用するには、空のままにします。",
@@ -875,8 +875,8 @@
   },
   "demo": {
     "banner-description": "変更は一時的なものであり、リセットされる場合があります。",
-    "banner-title": "Memos デモ",
-    "deploy-link": "Memos を導入する"
+    "banner-title": "zenlayer デモ",
+    "deploy-link": "zenlayer を導入する"
   },
   "attachment-library": {
     "actions": {

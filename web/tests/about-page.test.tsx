@@ -22,7 +22,7 @@ vi.mock("@/utils/i18n", () => ({
     (
       ({
         "common.version": "Version",
-        "about.powered-by": "Powered by Memos",
+        "about.powered-by": "Powered by zenlayer",
       }) as Record<string, string>
     )[key] ?? key,
 }));
@@ -48,7 +48,8 @@ describe("<About>", () => {
   it("renders the identity hero with linked version, commit, and license chips", () => {
     renderAbout();
 
-    expect(screen.getByRole("heading", { name: "Memos" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "zenlayer" })).toBeInTheDocument();
+    expect(screen.queryByText("about.distribution")).not.toBeInTheDocument();
     expect(screen.getByText(/Capture first/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "v0.25.0" })).toHaveAttribute("href", "https://github.com/usememos/memos/releases/tag/v0.25.0");
     expect(screen.getByRole("link", { name: "0123456" })).toHaveAttribute(
@@ -97,16 +98,41 @@ describe("<About>", () => {
     expect(screen.getByText("about.demo")).toBeInTheDocument();
   });
 
-  it("uses custom branding for the identity hero and credits Memos", () => {
+  it("uses custom branding for the identity hero and credits zenlayer", () => {
     mockInstance.generalSetting = {
       customProfile: { title: "Team Notes", description: "Our shared scratchpad.", logoUrl: "/custom-logo.png" },
     };
 
-    renderAbout();
+    const { container } = renderAbout();
 
     expect(screen.getByRole("heading", { name: "Team Notes" })).toBeInTheDocument();
     expect(screen.getByText("Our shared scratchpad.")).toBeInTheDocument();
-    expect(screen.getByText("Powered by Memos")).toBeInTheDocument();
+    expect(container.querySelector("header img")).toHaveAttribute("src", "/custom-logo.png");
+    expect(screen.getByText("about.distribution")).toBeInTheDocument();
+    expect(screen.getByText("Powered by zenlayer")).toBeInTheDocument();
+  });
+
+  it.each(["", "zenlayer"])("treats the configured title %j as the default brand", (title) => {
+    mockInstance.generalSetting = {
+      customProfile: { title, description: "Our shared scratchpad.", logoUrl: "/custom-logo.png" },
+    };
+
+    const { container } = renderAbout();
+
+    expect(screen.getByRole("heading", { name: "zenlayer" })).toBeInTheDocument();
+    expect(screen.getByText("Our shared scratchpad.")).toBeInTheDocument();
+    expect(container.querySelector("header img")).toHaveAttribute("src", "/custom-logo.png");
+    expect(screen.queryByText("about.distribution")).not.toBeInTheDocument();
+    expect(screen.queryByText("Powered by zenlayer")).not.toBeInTheDocument();
+  });
+
+  it("preserves an explicitly configured Memos title as custom branding", () => {
+    mockInstance.generalSetting = { customProfile: { title: "Memos", description: "", logoUrl: "" } };
+
+    renderAbout();
+
+    expect(screen.getByRole("heading", { name: "Memos" })).toBeInTheDocument();
+    expect(screen.getByText("Powered by zenlayer")).toBeInTheDocument();
   });
 
   it("renders as a page without nested mobile padding", () => {
