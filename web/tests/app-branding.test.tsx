@@ -1,11 +1,12 @@
 import { readFileSync } from "node:fs";
-import { URL } from "node:url";
+import { resolve } from "node:path";
 import { render } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import App from "@/App";
 
-const indexHTML = readFileSync(new URL("../index.html", import.meta.url), "utf8");
-const manifestJSON = readFileSync(new URL("../public/site.webmanifest", import.meta.url), "utf8");
+// Resolve from the web package directory to avoid Vite's import.meta.url asset transformation.
+const indexHTML = readFileSync(resolve(process.cwd(), "index.html"), "utf8");
+const manifestJSON = readFileSync(resolve(process.cwd(), "public/site.webmanifest"), "utf8");
 
 const instance = vi.hoisted(() => ({
   profile: { needsSetup: false },
