@@ -1,4 +1,8 @@
 {
+  "home": {
+    "welcome-title": "Welcome back!",
+    "welcome-description": "Capture your thoughts and everyday inspiration."
+  },
   "map": {
     "selection": "Selected memos",
     "loaded": "{{count}} loaded",

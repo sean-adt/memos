@@ -1,4 +1,8 @@
 {
+  "home": {
+    "welcome-title": "歡迎回來！",
+    "welcome-description": "記錄此刻的想法，留住日常的靈感。"
+  },
   "about": {
     "api-docs": "API 文件",
     "api-docs-note": "REST 與 gRPC 參考",

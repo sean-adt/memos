@@ -1,4 +1,8 @@
 {
+  "home": {
+    "welcome-title": "欢迎回来！",
+    "welcome-description": "记录此刻的想法，留住日常的灵感。"
+  },
   "map": {
     "selection": "选中的 Memo",
     "loaded": "已加载 {{count}} 条",
