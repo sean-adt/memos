@@ -44,7 +44,8 @@ describe("app branding metadata", () => {
     const entry = new DOMParser().parseFromString(indexHTML, "text/html");
 
     expect(entry.title).toBe("zenlayer");
-    expect(entry.querySelector('link[rel="manifest"]')).toHaveAttribute("href", "/site.webmanifest");
+    // DOMParser documents have no defaultView, which jest-dom's element matchers require.
+    expect(entry.querySelector('link[rel="manifest"]')?.getAttribute("href")).toBe("/site.webmanifest");
     expect(JSON.parse(manifestJSON)).toMatchObject({ name: "zenlayer", short_name: "zenlayer" });
     expect(indexHTML).toContain("<!-- memos.metadata.head -->");
     expect(indexHTML).toContain("<!-- memos.metadata.body -->");
