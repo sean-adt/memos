@@ -53,15 +53,25 @@ const Home = () => {
             if (!isUserSettingsInitialized) return null;
 
             return (
-              <MemoEditor
-                key={editorCacheKey}
-                autoFocus={claimHomeAutoFocus}
-                className={useGrid ? undefined : "mb-2"}
-                cacheKey={editorCacheKey}
-                placeholder={t("editor.any-thoughts")}
-                defaultCreateTime={defaultCreateTime}
-                defaultSpace={selectedSpaceName}
-              />
+              <div className="w-full">
+                {user && (
+                  <section aria-labelledby="home-welcome-title" className="mb-2 bg-card rounded-lg border border-border/70 px-4 py-3">
+                    <h2 id="home-welcome-title" className="text-lg font-semibold text-foreground">
+                      {t("home.welcome-title")}
+                    </h2>
+                    <p className="text-sm text-muted-foreground">{t("home.welcome-description")}</p>
+                  </section>
+                )}
+                <MemoEditor
+                  key={editorCacheKey}
+                  autoFocus={claimHomeAutoFocus}
+                  className={useGrid ? undefined : "mb-2"}
+                  cacheKey={editorCacheKey}
+                  placeholder={t("editor.any-thoughts")}
+                  defaultCreateTime={defaultCreateTime}
+                  defaultSpace={selectedSpaceName}
+                />
+              </div>
             );
           }}
         />

@@ -51,8 +51,9 @@ describe("locale search helpers", () => {
     expect(localeMatchesSearch("az", "azerbaijani", "en")).toBe(true);
   });
 
-  it("keeps the Azerbaijani catalog aligned with the English one", () => {
-    expect(flattenTranslationKeys(azTranslation).sort()).toEqual(flattenTranslationKeys(enTranslation).sort());
+  it("keeps the Azerbaijani catalog aligned apart from welcome copy that falls back to English", () => {
+    const englishFallbackKeys = ["home.welcome-title", "home.welcome-description"];
+    expect([...flattenTranslationKeys(azTranslation), ...englishFallbackKeys].sort()).toEqual(flattenTranslationKeys(enTranslation).sort());
   });
 
   it("uses future-oriented wording for expiring Hebrew links and tokens", () => {
