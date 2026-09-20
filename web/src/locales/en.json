@@ -1,6 +1,6 @@
 {
   "home": {
-    "welcome-title": "欢迎来到我的memos",
+    "welcome-title": "欢迎来到我的zenlayer",
     "welcome-description": "Capture your thoughts and everyday inspiration."
   },
   "map": {
@@ -31,14 +31,14 @@
     "description": "A privacy-first, lightweight note-taking service. Easily capture and share your great thoughts.",
     "distribution": "Distribution",
     "documents": "Documents",
-    "documents-note": "Deploy, configure, and use Memos",
+    "documents-note": "Deploy, configure, and use zenlayer",
     "github-repository": "GitHub Repo",
     "github-repository-note": "Source, issues, and releases",
     "license": "License",
     "media": "Media",
     "official-website": "Official Website",
     "official-website-note": "The project homepage",
-    "powered-by": "Powered by Memos",
+    "powered-by": "Powered by zenlayer",
     "project": "Project",
     "project-links": "Project links",
     "web-clipper": "Web Clipper",
@@ -80,8 +80,8 @@
   },
   "demo": {
     "banner-description": "Feel free to explore! This demo is reset periodically.",
-    "banner-title": "Memos demo",
-    "deploy-link": "Deploy your own Memos"
+    "banner-title": "zenlayer demo",
+    "deploy-link": "Deploy your own zenlayer"
   },
   "attachment-details": {
     "actions": {
@@ -241,7 +241,7 @@
     "settings": "Settings",
     "share": "Share",
     "sign-in": "Sign in",
-    "sign-in-to-memos": "Sign in to Memos",
+    "sign-in-to-memos": "Sign in to zenlayer",
     "sign-out": "Sign out",
     "sign-up": "Sign up",
     "statistics": "Statistics",
@@ -454,7 +454,7 @@
       "image-download": "Download PNG",
       "image-download-failed": "Failed to export image",
       "image-downloaded": "Image saved",
-      "image-footer": "Shared from Memos",
+      "image-footer": "Shared from zenlayer",
       "image-share": "Share image",
       "image-share-failed": "Failed to share image",
       "image-title": "Share as image",
@@ -517,7 +517,7 @@
   },
   "profile": {
     "no-shared-memos": "@{{username}} hasn't shared any memos yet.",
-    "not-found-description": "There's no Memos user named @{{username}} on this instance.",
+    "not-found-description": "There's no zenlayer user named @{{username}} on this instance.",
     "not-found-title": "No one here"
   },
   "reference": {
@@ -599,8 +599,8 @@
         "some-description": "Some description..."
       },
       "create-first": "Create your first token",
-      "description": "Create and revoke the secret keys that let other apps use the Memos API as you.",
-      "about-description": "A personal access token (PAT) is a secret key that authenticates API requests as your account. Any app or script holding one — an MCP server, a CLI, a mobile client — can do everything you can do in Memos, until the token expires or you delete it. Send it as a Bearer credential in the Authorization header:",
+      "description": "Create and revoke the secret keys that let other apps use the zenlayer API as you.",
+      "about-description": "A personal access token (PAT) is a secret key that authenticates API requests as your account. Any app or script holding one — an MCP server, a CLI, a mobile client — can do everything you can do in zenlayer, until the token expires or you delete it. Send it as a Bearer credential in the Authorization header:",
       "empty-description": "A token lets a script or app call the API as you. It is shown once at creation, then listed here so you can revoke it.",
       "empty-title": "No access tokens yet",
       "expires": "Expires",
@@ -615,7 +615,7 @@
       "no-expiration": "No expiration",
       "title": "Access Tokens",
       "token": "Token",
-      "web-clipper-title": "Use a token with Memos Web Clipper"
+      "web-clipper-title": "Use a token with zenlayer Web Clipper"
     },
     "account": {
       "attachment-storage": "Attachment storage",
@@ -641,10 +641,10 @@
       "add-provider": "Add provider",
       "api-key": "API key",
       "api-key-required": "API key is required.",
-      "byok-description": "Connect OpenAI or Gemini with an API key from your own account. Memos calls the provider directly from this server.",
-      "byok-key-note": "Use a key from your provider account; Memos does not bundle shared AI credentials.",
+      "byok-description": "Connect OpenAI or Gemini with an API key from your own account. zenlayer calls the provider directly from this server.",
+      "byok-key-note": "Use a key from your provider account; zenlayer does not bundle shared AI credentials.",
       "byok-label": "BYOK",
-      "byok-model-note": "Memos selects supported models for features like audio transcription.",
+      "byok-model-note": "zenlayer selects supported models for features like audio transcription.",
       "byok-storage-note": "Keys stay on this instance and are masked when settings are loaded.",
       "byok-title": "Use your own AI account",
       "configured": "Configured",
@@ -652,7 +652,7 @@
       "default-endpoint": "Default endpoint",
       "delete-provider": "Delete AI provider `{{title}}`?",
       "description": "Provider keys are supplied by the instance owner and used by server-side AI features.",
-      "dialog-description": "Add a key from your own provider account. Memos uses built-in models for each provider; leave the API key blank while editing to keep the stored key.",
+      "dialog-description": "Add a key from your own provider account. zenlayer uses built-in models for each provider; leave the API key blank while editing to keep the stored key.",
       "edit-provider": "Edit provider",
       "endpoint": "Endpoint",
       "endpoint-hint": "Leave empty to use the official provider endpoint.",
@@ -745,7 +745,7 @@
       "reactions-required": "Reactions list must not be empty"
     },
     "memo-archive": {
-      "description": "Move your memos and attachments between Memos instances with a single archive file.",
+      "description": "Move your memos and attachments between zenlayer instances with a single archive file.",
       "export-action": "Export",
       "export-description": "Download every memo you created, including comments, archived memos, and attachment files, as a Memo Archive.",
       "export-detail": "A ZIP file with one Markdown file and one JSON record per memo.",
@@ -757,7 +757,7 @@
       "import-action": "Choose file",
       "import-another": "Import another archive",
       "import-confirm": "Import {{count}} memos",
-      "import-description": "Import a Memo Archive from this or another Memos instance. Memos keep their identifiers, so importing the same archive twice does not create duplicates.",
+      "import-description": "Import a Memo Archive from this or another zenlayer instance. Memos keep their identifiers, so importing the same archive twice does not create duplicates.",
       "import-detail": "Select a memos-archive-*.zip file.",
       "import-failed": "Import failed.",
       "import-label": "Upload archive",
@@ -791,7 +791,7 @@
     "spaces": {
       "accept": "Accept",
       "accept-success": "Invitation accepted. {{space}} is now in Your spaces.",
-      "active-user": "Active Memos user",
+      "active-user": "Active zenlayer user",
       "admin-role-description": "Can edit this space, invite users, and manage members.",
       "already-invited": "Invitation already pending",
       "already-member": "Already a member",
@@ -814,7 +814,7 @@
       "general": "General",
       "invitation-pending": "Invitation pending",
       "invitations": "Invitations",
-      "invite-description": "Invite an existing Memos user. They must accept before joining the space.",
+      "invite-description": "Invite an existing zenlayer user. They must accept before joining the space.",
       "invite-member": "Invite member",
       "invite-success": "Invitation sent to @{{username}}.",
       "invite-to": "Invite to {{space}}",
@@ -838,7 +838,7 @@
       "members-count": "{{count}} members",
       "members-description": "People who can view and contribute to this space.",
       "members-load-error": "Failed to load members.",
-      "memos-user": "Memos user",
+      "memos-user": "zenlayer user",
       "no-description": "No description yet.",
       "no-pending-invitations": "No pending invitations.",
       "no-spaces": "No spaces yet",
@@ -863,7 +863,7 @@
       "spaces-count": "{{count}} spaces",
       "title": "Spaces",
       "untitled": "Untitled space",
-      "user-not-found": "No active Memos user found for @{{username}}.",
+      "user-not-found": "No active zenlayer user found for @{{username}}.",
       "user-role-description": "Can view and contribute to this space.",
       "you": "You",
       "your-access": "Your access",
@@ -1165,7 +1165,7 @@
       "use-emoji": "Use {{emoji}}"
     },
     "unavailable": "This space does not exist or you don’t have access to it.",
-    "back-to-memos": "Back to Memos",
+    "back-to-memos": "Back to zenlayer",
     "create": "Create space",
     "create-description": "Create a shared place for memos and members.",
     "create-success": "Space created",

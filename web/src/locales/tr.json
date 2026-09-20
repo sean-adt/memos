@@ -244,7 +244,7 @@
       "image-download": "PNG'i indirin",
       "image-download-failed": "Resim dışa aktarılamadı",
       "image-downloaded": "Resim kaydedildi",
-      "image-footer": "Memos'ten paylaşıldı",
+      "image-footer": "zenlayer'ten paylaşıldı",
       "image-share": "Resmi paylaş",
       "image-share-failed": "Resim paylaşılamadı",
       "image-title": "Resim olarak paylaş",
@@ -657,10 +657,10 @@
       "add-provider": "Sağlayıcı ekle",
       "api-key": "API tuşu",
       "api-key-required": "API anahtarı gerekli.",
-      "byok-description": "OpenAI veya Gemini'i kendi hesabınızdaki bir API anahtarıyla bağlayın. Memos sağlayıcıyı doğrudan bu sunucudan arar.",
-      "byok-key-note": "Sağlayıcı hesabınızdan bir anahtar kullanın; Memos, paylaşılan AI kimlik bilgilerini birleştirmez.",
+      "byok-description": "OpenAI veya Gemini'i kendi hesabınızdaki bir API anahtarıyla bağlayın. zenlayer sağlayıcıyı doğrudan bu sunucudan arar.",
+      "byok-key-note": "Sağlayıcı hesabınızdan bir anahtar kullanın; zenlayer, paylaşılan AI kimlik bilgilerini birleştirmez.",
       "byok-label": "BYOK",
-      "byok-model-note": "Memos, ses transkripsiyonu gibi özellikler için desteklenen modelleri seçer.",
+      "byok-model-note": "zenlayer, ses transkripsiyonu gibi özellikler için desteklenen modelleri seçer.",
       "byok-storage-note": "Anahtarlar bu örnekte kalır ve ayarlar yüklendiğinde maskelenir.",
       "byok-title": "Kendi AI hesabınızı kullanın",
       "configured": "Yapılandırılmış",
@@ -668,7 +668,7 @@
       "default-endpoint": "Varsayılan uç nokta",
       "delete-provider": "AI sağlayıcısı `{{title}}` silinsin mi?",
       "description": "Sağlayıcı anahtarları, yönetim ortamı sahibi tarafından sağlanır ve sunucu tarafı AI özellikleri tarafından kullanılır.",
-      "dialog-description": "Kendi sağlayıcı hesabınızdan bir anahtar ekleyin. Memos her sağlayıcı için yerleşik modelleri kullanır; Saklanan anahtarı korumak için düzenleme sırasında API anahtarını boş bırakın.",
+      "dialog-description": "Kendi sağlayıcı hesabınızdan bir anahtar ekleyin. zenlayer her sağlayıcı için yerleşik modelleri kullanır; Saklanan anahtarı korumak için düzenleme sırasında API anahtarını boş bırakın.",
       "edit-provider": "Sağlayıcıyı düzenle",
       "endpoint": "Uç nokta",
       "endpoint-hint": "Resmi sağlayıcı uç noktasını kullanmak için boş bırakın.",
@@ -778,8 +778,8 @@
   },
   "demo": {
     "banner-description": "Değişiklikler geçicidir ve sıfırlanabilir.",
-    "banner-title": "Memos demosu",
-    "deploy-link": "Memos'inizi konuşlandırın"
+    "banner-title": "zenlayer demosu",
+    "deploy-link": "zenlayer'inizi konuşlandırın"
   },
   "attachment-library": {
     "actions": {

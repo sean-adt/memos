@@ -1,6 +1,6 @@
 {
   "home": {
-    "welcome-title": "歡迎來到我的memos",
+    "welcome-title": "歡迎來到我的zenlayer",
     "welcome-description": "記錄此刻的想法，留住日常的靈感。"
   },
   "about": {
@@ -13,14 +13,14 @@
     "description": "以隱私為核心的輕量化筆記服務，輕鬆記錄並分享您的好點子。",
     "distribution": "發行版本",
     "documents": "文件",
-    "documents-note": "部署、設定及使用 Memos",
+    "documents-note": "部署、設定及使用 zenlayer",
     "github-repository": "GitHub 儲存庫",
     "github-repository-note": "原始碼、問題與版本發佈",
     "license": "授權條款",
     "media": "媒體",
     "official-website": "官方網站",
     "official-website-note": "專案首頁",
-    "powered-by": "由 Memos 提供支援",
+    "powered-by": "由 zenlayer 提供支援",
     "project": "專案",
     "project-links": "專案連結",
     "web-clipper": "網頁剪藏器",
@@ -63,8 +63,8 @@
   },
   "demo": {
     "banner-description": "這裡的改動是暫時的，可能會被重置。",
-    "banner-title": "Memos demo",
-    "deploy-link": "部署您的 Memos"
+    "banner-title": "zenlayer demo",
+    "deploy-link": "部署您的 zenlayer"
   },
   "attachment-details": {
     "actions": {
@@ -221,7 +221,7 @@
     "settings": "設定",
     "share": "分享",
     "sign-in": "登入",
-    "sign-in-to-memos": "登入 Memos",
+    "sign-in-to-memos": "登入 zenlayer",
     "sign-in-with": "使用 {{provider}} 登入",
     "sign-out": "登出",
     "sign-up": "註冊",
@@ -411,7 +411,7 @@
       "image-download": "下載 PNG",
       "image-download-failed": "匯出圖片失敗",
       "image-downloaded": "圖片已儲存",
-      "image-footer": "由 Memos 產生分享圖",
+      "image-footer": "由 zenlayer 產生分享圖",
       "image-share": "分享圖片",
       "image-share-failed": "分享圖片失敗",
       "image-title": "分享成圖片",
@@ -556,7 +556,7 @@
       "title": "存取令牌",
       "token": "令牌",
       "no-tokens-found": "未找到存取令牌",
-      "web-clipper-title": "搭配 Memos 網頁剪藏器使用令牌"
+      "web-clipper-title": "搭配 zenlayer 網頁剪藏器使用令牌"
     },
     "account": {
       "attachment-storage": "附件佔用空間",
@@ -581,10 +581,10 @@
       "add-provider": "新增服務供應商",
       "api-key": "API 金鑰",
       "api-key-required": "API 金鑰不可為空。",
-      "byok-description": "使用你自己的 OpenAI 或 Gemini 帳號 API 金鑰。Memos 會從本實例伺服器直接呼叫服務供應商。",
-      "byok-key-note": "使用你在服務供應商帳號中建立的金鑰；Memos 不提供共享 AI 憑證。",
+      "byok-description": "使用你自己的 OpenAI 或 Gemini 帳號 API 金鑰。zenlayer 會從本實例伺服器直接呼叫服務供應商。",
+      "byok-key-note": "使用你在服務供應商帳號中建立的金鑰；zenlayer 不提供共享 AI 憑證。",
       "byok-label": "BYOK",
-      "byok-model-note": "Memos 會為音訊轉寫等功能選擇內建支援的模型。",
+      "byok-model-note": "zenlayer 會為音訊轉寫等功能選擇內建支援的模型。",
       "byok-storage-note": "金鑰儲存在本實例中，並在載入設定時進行遮罩處理。",
       "byok-title": "使用你自己的 AI 帳號",
       "configured": "已設定",
@@ -592,7 +592,7 @@
       "default-endpoint": "預設端點",
       "delete-provider": "刪除 AI 服務供應商 `{{title}}`？",
       "description": "服務供應商金鑰由實例擁有者提供，並用於伺服器端 AI 功能。",
-      "dialog-description": "新增你自己的服務供應商帳號金鑰。Memos 會為每個服務供應商使用內建模型；編輯時將 API 金鑰留空可保留已儲存的金鑰。",
+      "dialog-description": "新增你自己的服務供應商帳號金鑰。zenlayer 會為每個服務供應商使用內建模型；編輯時將 API 金鑰留空可保留已儲存的金鑰。",
       "edit-provider": "編輯服務供應商",
       "endpoint": "端點",
       "endpoint-hint": "留空則使用服務供應商的官方端點。",
@@ -811,7 +811,7 @@
     "spaces": {
       "accept": "接受",
       "accept-success": "你已接受邀請並加入 {{space}}。",
-      "active-user": "有效的 Memos 使用者",
+      "active-user": "有效的 zenlayer 使用者",
       "admin-role-description": "可以編輯此空間、邀請使用者及管理成員。",
       "already-invited": "已有待處理的邀請",
       "already-member": "已是成員",
@@ -834,7 +834,7 @@
       "general": "一般",
       "invitation-pending": "邀請待處理",
       "invitations": "邀請",
-      "invite-description": "邀請現有的 Memos 使用者。對方必須接受邀請後才能加入空間。",
+      "invite-description": "邀請現有的 zenlayer 使用者。對方必須接受邀請後才能加入空間。",
       "invite-member": "邀請成員",
       "invite-success": "已將邀請傳送給 @{{username}}。",
       "invite-to": "邀請加入 {{space}}",
@@ -858,7 +858,7 @@
       "members-count": "{{count}} 位成員",
       "members-description": "可以查看此空間並在其中貢獻內容的人。",
       "members-load-error": "無法載入成員。",
-      "memos-user": "Memos 使用者",
+      "memos-user": "zenlayer 使用者",
       "no-description": "尚無說明。",
       "no-pending-invitations": "沒有待處理的邀請。",
       "no-spaces": "尚無空間",
@@ -883,7 +883,7 @@
       "spaces-count": "{{count}} 個空間",
       "title": "空間",
       "untitled": "未命名空間",
-      "user-not-found": "找不到使用者名稱為 @{{username}} 的有效 Memos 使用者。",
+      "user-not-found": "找不到使用者名稱為 @{{username}} 的有效 zenlayer 使用者。",
       "user-role-description": "可以查看此空間並在其中貢獻內容。",
       "you": "你",
       "your-access": "你的存取權限",
@@ -1051,7 +1051,7 @@
   },
   "space": {
     "unavailable": "空間不存在或你沒有存取權限。",
-    "back-to-memos": "返回 Memos",
+    "back-to-memos": "返回 zenlayer",
     "create": "建立空間",
     "create-description": "建立供備忘錄與成員共用的空間。",
     "create-success": "已建立空間",
