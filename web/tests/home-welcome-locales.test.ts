@@ -12,9 +12,9 @@ describe("home welcome translations", () => {
   });
 
   it.each([
-    ["en", en, "12345678", "Capture your thoughts and everyday inspiration."],
-    ["zh-Hans", zhHans, "12345678", "记录此刻的想法，留住日常的灵感。"],
-    ["zh-Hant", zhHant, "12345678", "記錄此刻的想法，留住日常的靈感。"],
+    ["en", en, "welcome to memo", "Capture your thoughts and everyday inspiration."],
+    ["zh-Hans", zhHans, "welcome to memo", "记录此刻的想法，留住日常的灵感。"],
+    ["zh-Hant", zhHant, "welcome to memo", "記錄此刻的想法，留住日常的靈感。"],
   ] as const)("provides and loads the approved %s copy", async (locale, resource, title, description) => {
     expect(resource.home).toEqual({ "welcome-title": title, "welcome-description": description });
     await i18n.changeLanguage(locale);
@@ -26,7 +26,7 @@ describe("home welcome translations", () => {
     await i18n.changeLanguage(locale);
     expect(i18n.getResource(locale, "translation", "home.welcome-title")).toBeUndefined();
     expect(i18n.getResource(locale, "translation", "home.welcome-description")).toBeUndefined();
-    expect(i18n.t("home.welcome-title")).toBe("12345678");
+    expect(i18n.t("home.welcome-title")).toBe("welcome to memo");
     expect(i18n.t("home.welcome-description")).toBe("Capture your thoughts and everyday inspiration.");
   });
 });
